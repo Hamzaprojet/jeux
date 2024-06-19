@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    
+   
+     <script src="https://kit.fontawesome.com/3de493b338.js" crossorigin="anonymous"></script>
+    
+    <title>Document</title>
+    
+</head>
+<body>
+    <header>
+        <div class="left">
+            <a href="">jeux</a>
+            <a href="" style="font-weight: 100;" >contenue multimedia</a>
+
+        </div>
+        <div class="right">
+            <a href=""><i class="fa-solid fa-magnifying-glass"; style="color: blue;"></i></a>
+            <a href=""><i class="fa-solid fa-gear"></i></a>
+            <a href=""><img src="image/profil-pic.jpg" style="height:50px; border-radius: 50px;" ></a>
+            <a href="" style="color: blue;">20:29</a>
+            
+
+        </div>
+    </header>
+    <div id="carousel">
+
+        <div class="hideLeft">
+         <img src="image/game-thumbnail-demons-souls.png">
+       </div>
+ 
+       <div class="prevLeftSecond">
+         <img src="image/game-thumbnail-dirt-5.png" id='#sackboy'>
+       </div>
+ 
+       <div class="prev">
+         <img src="image/game-thumbnail-watch-dogs.png">
+       </div>
+ 
+       <div class="selected">
+         <img src="image/game-thumbnail-yakuza.png">
+       </div>
+ 
+       <div class="next">
+         <img src="image/game-thumbnail-spider-man (1).png">
+       </div>
+ 
+       <div class="nextRightSecond">
+         <img src="image/game-stat-boost-set.png">
+       </div>
+ 
+       <div class="hideRight">
+         <img src="image/game-thumbnail-XIII.png">
+       </div>
+ 
+     </div>
+ 
+    
+ 
+     
+     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+     <script>
+        function moveToSelected(element) {
+            var selected;
+        
+            if (element === "next") {
+                selected = $(".selected").next();
+            } else if (element === "prev") {
+                selected = $(".selected").prev();
+            } else {
+                selected = element;
+            }
+        
+            var next = $(selected).next();
+            var prev = $(selected).prev();
+            var prevSecond = $(prev).prev();
+            var nextSecond = $(next).next();
+        
+            $(selected).removeClass().addClass("selected");
+            $(prev).removeClass().addClass("prev");
+            $(next).removeClass().addClass("next");
+            $(nextSecond).removeClass().addClass("nextRightSecond");
+            $(prevSecond).removeClass().addClass("prevLeftSecond");
+        
+            $(nextSecond).nextAll().removeClass().addClass("hideRight");
+            $(prevSecond).prevAll().removeClass().addClass("hideLeft");
+        }
+        
+        // Événements clavier
+        $(document).keydown(function(e) {
+            switch (e.which) {
+                case 37: // gauche
+                    moveToSelected('prev');
+                    break;
+                case 39: // droite
+                    moveToSelected('next');
+                    break;
+                default:
+                    return;
+            }
+            e.preventDefault();
+        });
+        
+        $('#carousel div').click(function() {
+            moveToSelected($(this));
+        });
+        
+        $('#prev').click(function() {
+            moveToSelected('prev');
+        });
+        
+        $('#next').click(function() {
+            moveToSelected('next');
+        });
+        </script>
+
+       <script>
+        $('#sackboy').on('click',function() {
+            $('body').css('background-image','url(image/game-thumbnail-dirt-5.png)');
+        });
+       </script>
+</body>
+
+</html>
